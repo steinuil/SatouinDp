@@ -52,6 +52,10 @@ let main _ =
 
     new ToolStripSeparator() |> menu.Items.Add |> ignore
 
+    let refreshItem = new ToolStripMenuItem(Text = "&Refresh")
+    refreshItem.Click.Add (fun _ -> update ())
+    menu.Items.Add refreshItem |> ignore
+
     let exitItem = new ToolStripMenuItem(Text = "&Exit")
     exitItem.Click.Add (fun _ -> Application.Exit())
     menu.Items.Add exitItem |> ignore
