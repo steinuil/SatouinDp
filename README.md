@@ -5,6 +5,23 @@ to switch primary display in two clicks.
 
 ![Screenshot of SatouinDp in action](./screenshot.jpg)
 
+I think I can consider this feature complete. Unless there's bugs expect no further development.
+
+> How do I run this on startup?
+
+Go to `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup` and drop the exe there.
+Or just a shortcut if you prefer.
+
+> Why is the exe file so big?
+
+Because it bundles the .NET Core runtime and all the libraries. Those things are pretty big.
+You can compile it yourself easily enough if you don't trust the releases.
+
+> Why are the display names not the same as the display numbers in the control panel?
+
+Hell if I know. If you know of an easy way to get the display numbers like they are shown there
+I could fix this, but otherwise it's fine as it is.
+
 ## Download
 
 [Download it from here](https://github.com/steinuil/SatouinDp/releases/latest).

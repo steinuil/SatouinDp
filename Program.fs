@@ -36,10 +36,7 @@ let main _ =
                 if isPrimary then
                     item.Checked <- true
                 else
-                    item.Click.Add (fun _ ->
-                        DisplayDevice.setPrimary display.name |> ignore
-                        update ()
-                    )
+                    item.Click.Add (fun _ -> DisplayDevice.setPrimary display.name |> ignore)
     
                 item
             )
@@ -53,15 +50,9 @@ let main _ =
 
     new ToolStripSeparator() |> menu.Items.Add |> ignore
 
-    let refreshItem = new ToolStripMenuItem(Text = "&Refresh")
-    refreshItem.Click.Add (fun _ -> update ())
-    menu.Items.Add refreshItem |> ignore
-
     let exitItem = new ToolStripMenuItem(Text = "&Exit")
     exitItem.Click.Add (fun _ -> Application.Exit())
     menu.Items.Add exitItem |> ignore
-
-    SystemEvents.DisplaySettingsChanged.Add (fun _ -> update ())
 
     let notifyIcon =
         new NotifyIcon(
@@ -71,10 +62,15 @@ let main _ =
             Icon = AppIcon.get()
         )
 
+    let onDisplaySettingsChanged = new EventHandler(fun _ _ -> update ())
+
+    SystemEvents.DisplaySettingsChanged.AddHandler onDisplaySettingsChanged
+
     ctx.ThreadExit.Add (fun _ ->
         notifyIcon.Icon.Dispose()
         notifyIcon.Dispose()
         menu.Dispose()
+        SystemEvents.DisplaySettingsChanged.RemoveHandler onDisplaySettingsChanged
     )
 
     Application.Run ctx
