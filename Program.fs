@@ -2,6 +2,7 @@
 
 open System
 open System.Windows.Forms
+open Microsoft.Win32
 
 
 [<EntryPoint; STAThread>]
@@ -59,6 +60,8 @@ let main _ =
     let exitItem = new ToolStripMenuItem(Text = "&Exit")
     exitItem.Click.Add (fun _ -> Application.Exit())
     menu.Items.Add exitItem |> ignore
+
+    SystemEvents.DisplaySettingsChanged.Add (fun _ -> update ())
 
     let notifyIcon =
         new NotifyIcon(
