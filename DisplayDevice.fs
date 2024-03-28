@@ -250,6 +250,14 @@ let queryAll () =
     )
 
 
+let queryDisplayName devName =
+    let mutable dev = DisplayDevice.Empty
+
+    if Native.EnumDisplayDevicesW(devName, 0u, &dev, Native.EDDOptions.None)
+    then Some(dev)
+    else None
+
+
 let querySettings devName =
     let mutable mode = DisplaySettings.Empty
 

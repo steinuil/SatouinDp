@@ -25,11 +25,12 @@ let main _ =
             |> Seq.filter (fun d -> d.state.HasFlag DisplayDevice.State.AttachedToDesktop)
             |> Seq.map (fun display ->
                 let settings = DisplayDevice.querySettings display.name |> Option.get
+                let name = DisplayDevice.queryDisplayName display.name |> Option.get
                 let item =
                     new ToolStripMenuItem(
                         Text = sprintf "%s %dx%d@%dhz"
-                            display.name settings.width
-                            settings.height settings.displayFrequency
+                            name.string settings.width settings.height
+                            settings.displayFrequency
                     )
     
                 let isPrimary = display.state.HasFlag DisplayDevice.State.PrimaryDevice

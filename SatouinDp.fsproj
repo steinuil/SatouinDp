@@ -7,7 +7,7 @@
     <ApplicationIcon>.\Resources\icon.ico</ApplicationIcon>
     <ApplicationVersion>1.1</ApplicationVersion>
     <Win32Resource>.\Resources\icon.res</Win32Resource>
-    <PublishTrimmed>true</PublishTrimmed>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>
